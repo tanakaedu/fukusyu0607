@@ -26,12 +26,11 @@ namespace fukusyu0607
 		{
 			InitializeComponent();
 
-			velx[0] = rand.Next(-10, 11);
-			velx[1] = rand.Next(-10, 11);
-			velx[2] = rand.Next(-10, 11);
-			vely[0] = rand.Next(-10, 11);
-			vely[1] = rand.Next(-10, 11);
-			vely[2] = rand.Next(-10, 11);
+			for (int i = 0; i < 3; i++)
+			{
+				velx[i] = rand.Next(-10, 11);
+				vely[i] = rand.Next(-10, 11);
+			}
 
 			// 以下に、label1.Leftとlabel1.Topの座標をランダムで求めよ
 			label1.Left = rand.Next(ClientSize.Width - label1.Width);
