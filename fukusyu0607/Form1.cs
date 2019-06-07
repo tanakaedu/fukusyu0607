@@ -16,18 +16,22 @@ namespace fukusyu0607
 		// ランダムのシード(種)を指定して初期化したら、
 		// それを使い続ける。
 		private static Random rand = new Random();
-		int vx = rand.Next(-10, 11);
-		int vy = rand.Next(-10, 11);
-		int vx3 = rand.Next(-10, 11);
-		int vy3 = rand.Next(-10, 11);
-		int vx4 = rand.Next(-10, 11);
-		int vy4 = rand.Next(-10, 11);
 		int time = 100 * 5;
 		int left = 3;
+
+		int[] velx = new int[3];
+		int[] vely = new int[3];
 
 		public Form1()
 		{
 			InitializeComponent();
+
+			velx[0] = rand.Next(-10, 11);
+			velx[1] = rand.Next(-10, 11);
+			velx[2] = rand.Next(-10, 11);
+			vely[0] = rand.Next(-10, 11);
+			vely[1] = rand.Next(-10, 11);
+			vely[2] = rand.Next(-10, 11);
 
 			// 以下に、label1.Leftとlabel1.Topの座標をランダムで求めよ
 			label1.Left = rand.Next(ClientSize.Width - label1.Width);
@@ -41,14 +45,14 @@ namespace fukusyu0607
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			label1.Left += vx;
-			label1.Top += vy;
+			label1.Left += velx[0];
+			label1.Top += vely[0];
 
-			label3.Left += vx3;
-			label3.Top += vy3;
+			label3.Left += velx[1];
+			label3.Top += vely[1];
 
-			label4.Left += vx4;
-			label4.Top += vy4;
+			label4.Left += velx[2];
+			label4.Top += vely[2];
 
 			// マウスと重なった時、タイマーを止める
 			Point p = PointToClient(MousePosition);
@@ -101,71 +105,71 @@ namespace fukusyu0607
 			// 左で跳ね仮り(Math.Abs(vx)で、vxの絶対値)
 			if (label1.Left < 0)
 			{
-				vx = Math.Abs(vx);
+				velx[0] = Math.Abs(velx[0]);
 			}
 			// 上で跳ね返り
 			if (label1.Top < 0)
 			{
-				vy = Math.Abs(vy);
+				vely[0] = Math.Abs(vely[0]);
 			}
 			// 右で跳ね仮り
 			//// フォームの右端 = ClientSize.Width
 			//// ラベルの右端 = label1.Right
 			if (label1.Right > ClientSize.Width)
 			{
-				vx = -Math.Abs(vx);
+				velx[0] = -Math.Abs(velx[0]);
 			}
 			// 下で跳ね仮り
 			if (label1.Bottom > ClientSize.Height)
 			{
-				vy = -Math.Abs(vy);
+				vely[0] = -Math.Abs(vely[0]);
 			}
 
 			// 左で跳ね仮り(Math.Abs(vx)で、vxの絶対値)
 			if (label3.Left < 0)
 			{
-				vx3 = Math.Abs(vx3);
+				velx[1] = Math.Abs(velx[1]);
 			}
 			// 上で跳ね返り
 			if (label3.Top < 0)
 			{
-				vy3 = Math.Abs(vy3);
+				vely[1] = Math.Abs(vely[1]);
 			}
 			// 右で跳ね仮り
 			//// フォームの右端 = ClientSize.Width
 			//// ラベルの右端 = label1.Right
 			if (label3.Right > ClientSize.Width)
 			{
-				vx3 = -Math.Abs(vx3);
+				velx[1] = -Math.Abs(velx[1]);
 			}
 			// 下で跳ね仮り
 			if (label3.Bottom > ClientSize.Height)
 			{
-				vy3 = -Math.Abs(vy3);
+				vely[1] = -Math.Abs(vely[1]);
 			}
 
 
 			// 左で跳ね仮り(Math.Abs(vx)で、vxの絶対値)
 			if (label4.Left < 0)
 			{
-				vx4 = Math.Abs(vx4);
+				velx[2] = Math.Abs(velx[2]);
 			}
 			// 上で跳ね返り
 			if (label4.Top < 0)
 			{
-				vy4 = Math.Abs(vy4);
+				vely[2] = Math.Abs(vely[2]);
 			}
 			// 右で跳ね仮り
 			//// フォームの右端 = ClientSize.Width
 			//// ラベルの右端 = label1.Right
 			if (label4.Right > ClientSize.Width)
 			{
-				vx4 = -Math.Abs(vx4);
+				velx[2] = -Math.Abs(velx[2]);
 			}
 			// 下で跳ね仮り
 			if (label4.Bottom > ClientSize.Height)
 			{
-				vy4 = -Math.Abs(vy4);
+				vely[2] = -Math.Abs(vely[2]);
 			}
 
 			time--;
